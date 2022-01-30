@@ -1,0 +1,15 @@
+version: "3"
+services:
+  smtp:
+    image: schickling/mailcatcher
+    ports:
+      - "1080:1080"
+      - "25:1025"
+  api:
+    build:
+      context: ./api
+    environment:
+      - SMTP_HOST=smtp
+      - SMTP_PORT=1025
+    ports:
+      - "3000:5000"
